@@ -1,9 +1,14 @@
+import time
+
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
 
-def test_guest_should_see_login_link_pass(browser):
-    browser.get(link)
-    browser.find_element_by_css_selector("#login_link")
-
-def test_guest_should_see_login_link_fail(browser):
-    browser.get(link)
-    browser.find_element_by_css_selector("#magic_link")
+def test_chek_button(browser):
+    try:
+        browser.get(link)
+        time.sleep(30)
+        browser.find_element_by_css_selector("button.btn.btn-lg.btn-primary.btn-add-to-basket")
+        k=1
+    except NoSuchElementException:
+        k=0
+    finally:
+        assert k==1, "Кнопка не найдена"
